@@ -1,0 +1,46 @@
+-- -*- mode: Haskell -*-
+-- font = "-xos4-terminus-medium-*-*-*-20-*-*-*-*-*-iso10646-1"
+Config { font = "xft:DejaVu Sans Mono:size=16,style=Bold"
+       , bgColor = "#333333"
+       , fgColor = "#FFFDB3"
+       , border = NoBorder
+       , borderColor = "#3f3f3f"
+       --, position = Static { xpos = 0 , ypos = 0, width = 1024, height = 22 }
+       , position = BottomW L 101
+       , lowerOnStart = True
+       , hideOnStart = False
+       , persistent = False
+       , commands = [ Run BatteryP ["BAT0"]
+                        [ "-t", "AC: <acstatus> <watts> (<left>%) <fc=#3CC85E>></fc><fc=#2CFF2C>></fc>"
+                        , "-L", "20", "-H", "80"
+                        , "--low","#E91537","--normal","#FFFFFF","--high","#2CFF2C", "-p", "3"
+                        , "--"
+                        , "-O", "<fc=#2CFF2C>On</fc>"
+                        , "-i", ""
+                        , "-o", "<fc=#E91537>Off</fc>"
+                        , "-L", "-12", "-H", "-10"
+                        , "-l", "red", "-m", "white", "-h", "#2CFF2C"
+                        ] 600
+                    , Run Wireless "wlp4s0"
+                        [ "-t", "Wifi: <fc=#FFFFFF><essid> <quality></fc> <fc=#3CC85E>></fc><fc=#2CFF2C>></fc>"] 600
+                    , Run DynNetwork
+                        [ "-t" , "<dev>: <fc=#FFFFFF><rx>KB|<tx>KB</fc> <fc=#3CC85E>></fc><fc=#2CFF2C>></fc>"
+                        , "-w" , "6"
+                        -- , "-s", "True"
+                        ] 10
+                      , Run Volume "default" "Master"
+                    --, Run Volume "pulse" "Master"
+                    --, Run Volume "sysdefault" "Master"
+                        [ "-t" , "Vol: <fc=#FFFFFF><volume>%</fc> <status>"
+                        ] 10
+                    , Run Brightness
+                        [ "-t", "Bright: <fc=#FFFFFF><percent>%</fc> <fc=#3CC85E>></fc><fc=#2CFF2C>></fc>"
+                        , "--"
+                        , "-D","/sys/class/backlight/intel_backlight"
+                        --, "--brightness-icon-pattern", "<icon=bright_%%.xpm/>"
+                        ] 30
+                    ] 
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%wlp4s0wi%  %dynnetwork% }{%bright% %battery% %default:Master%"
+       }

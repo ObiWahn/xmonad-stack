@@ -1,0 +1,35 @@
+-- -*- mode: Haskell -*-
+
+-- font = "-xos4-terminus-medium-*-*-*-20-*-*-*-*-*-iso10646-1"
+Config { font = "xft:DejaVu Sans Mono:size=16,style=Bold"
+       , bgColor = "#333333"
+       , fgColor = "#FFFDB3"
+       , border = NoBorder
+       , borderColor = "#3f3f3f"
+       --, position = Static { xpos = 0 , ypos = 0, width = 1024, height = 22 }
+       , position = TopW L 100
+       , lowerOnStart = True
+       , hideOnStart = False
+       , persistent = False
+       , commands = [ Run Cpu
+                        [ "-t", "Cpu: <total>% <fc=#3CC85E>></fc><fc=#2CFF2C>></fc>", "-p2"
+                        , "-L","10","-H","50"
+                        , "--low","#2CFF2C","--normal","#FFFFFF","--high","#E91537"
+                        ] 10
+                    , Run Memory
+                        [ "-t", "Mem: <usedratio>% <fc=#3CC85E>></fc><fc=#2CFF2C>></fc>"
+                        , "-L","10","-H","50"
+                        , "--low","#2CFF2C", "--normal","#FFFFFF","--high","#E91537"
+                        ] 10
+                    , Run Weather "ETNG"
+                        [ "-t","<tempC>°C"
+                        , "-L","10","-H","25"
+                        , "--low","#5FB9E1","--normal","#FFFFFF","--high","#E91537"
+                        ] 36000
+                    , Run Date "<fc=#FFFFFF>%a %d %b</fc> %Y <fc=#FFFFFF>%H:%M</fc>:%S " "date" 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{%cpu% %memory% %date%%ETNG%"
+       }
