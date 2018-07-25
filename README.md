@@ -1,4 +1,4 @@
-#Install
-- link the xmonad-config directory to `~/.xmonad`
-- create a `xmonad.hs` by hand or link one of the prepared files
-- if you want to use stack you need to linkt `xmonad_build` to `build` in the config dir
+# Installation
+- Link the `config` directory to `~/.xmonad`
+- Create a `xmonad.hs` by hand or use one of the prepared `files_.hs` files
+- If you want to use stack you need to link `xmonad_build` to `build` in the `config` directory
