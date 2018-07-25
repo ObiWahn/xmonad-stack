@@ -1,5 +1,5 @@
 #!/bin/sh
-repo="$HOME/repos/github/xmonad"
+repo="$HOME/repos/github/xmonad-stack"
 cd $repo || { echo "could not enter source"; exit 1; }
 
 exec stack --stack-yaml "$repo/stack.yaml" ghc -- \
