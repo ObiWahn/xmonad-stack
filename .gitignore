@@ -1,1 +1,5 @@
 .stack-work
+xmonad-config/xmonad.hi
+xmonad-config/xmonad.o
+xmonad-config/xmonad.errors
+xmonad-config/xmonad-*-linux
